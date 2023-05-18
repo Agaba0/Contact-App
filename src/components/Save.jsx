@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ContactContext } from '../App';
 import Navbar from './nav';
 import SearchInput from './SearchInput';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const Save = () => {
   const [data, setData] = useState({});
@@ -38,9 +39,9 @@ const Save = () => {
             <SearchInput />
             <button
               onClick={() => navigate(-1)}
-              className="bg-gray-200 rounded mt-2 px-1"
+              className="text-blue-700 border mt-2 border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500" 
             >
-              GO BACK
+              <FaArrowLeft /> 
             </button>
             <div className="mb-3">
               <h1 className="mt-6 font-bold">My Center</h1>
@@ -148,7 +149,7 @@ const Save = () => {
               </button>
             </form>
           </div>
-          <div className="absolute bottom-0 w-full border-t border-gray-200 flex justify-center items-center">
+          <div className="absolute bottom-0 w-full border-t border-gray-200 flex justify-center items-center bg-blue-700">
             <Navbar />
           </div>
         </div>

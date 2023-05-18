@@ -5,6 +5,7 @@ import MyCenter from './components/MyCenter';
 import Save from './components/Save';
 import ContactDetails from './components/Details';
 import { createContext, useState, useEffect } from 'react';
+import Try from './components/keep';
 
 export const ContactContext = createContext();
 
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/contacts/:id" element={<ContactDetails />}></Route>
         <Route path="/myCenter" element={<MyCenter />}></Route>
         <Route path="/save" element={<Save />}></Route>
+        <Route path='/keep' element={<Try/>}></Route>
       </Routes>
     </ContactContext.Provider>
   );

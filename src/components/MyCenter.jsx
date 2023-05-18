@@ -15,7 +15,7 @@ const MyCenter = () => {
               <h1 className="mt-6 font-bold">My Center</h1>
             </div>
           </div>
-          <div className="absolute bottom-0 w-full border-t border-gray-200 flex justify-center items-center">
+          <div className="absolute bottom-0 w-full border-t border-gray-200 flex justify-center items-center bg-blue-700">
             <Navbar></Navbar>
           </div>
         </div>
