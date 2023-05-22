@@ -5,12 +5,14 @@ import MyCenter from './components/MyCenter';
 import Save from './components/Save';
 import ContactDetails from './components/Details';
 import { createContext, useState, useEffect } from 'react';
+import EditContact from './components/EditContact';
 
 export const ContactContext = createContext();
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
   const [contact, setContact] = useState({});
+
   let urlData = 'https://jsonplaceholder.typicode.com/users';
 
   async function fetchUsers() {
@@ -27,13 +29,16 @@ const App = () => {
     fetchUsers();
   }, []);
   return (
-    <ContactContext.Provider value={{ contact, setContact, contacts, setContacts }}>
+    <ContactContext.Provider
+      value={{ contact, setContact, contacts, setContacts }}
+    >
       <Routes>
         <Route path="/" element={<Contact />}></Route>
         <Route path="/recent" element={<HomePage />}></Route>
         <Route path="/contacts/:id" element={<ContactDetails />}></Route>
         <Route path="/myCenter" element={<MyCenter />}></Route>
         <Route path="/save" element={<Save />}></Route>
+        <Route path="/EditContact" element={<EditContact />}></Route>
       </Routes>
     </ContactContext.Provider>
   );

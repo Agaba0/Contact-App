@@ -3,6 +3,7 @@ import { ContactContext } from '../App';
 import Navbar from './nav';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
+import { AiFillEdit } from 'react-icons/ai';
 
 const ContactDetails = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const ContactDetails = () => {
     }
     setFile(file);
   };
+
   useEffect(() => {
     let fileReader,
       isCancel = false;
@@ -50,15 +52,26 @@ const ContactDetails = () => {
           style={{ width: 414, height: 736 }}
         >
           <div className="bg-white h-full w-full px-5 pt-6 pb-20 overflow-y-auto">
-            <button
-              type="button"
-              className="inline-block mt-3 rounded bg-primary px-2 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-              data-te-ripple-init
-              data-te-ripple-color="light"
-              onClick={() => navigate(-1)}
-            >
-              <FaArrowLeft className="h4 w-6" />
-            </button>
+            <div className="flex justify-between">
+              <button
+                type="button"
+                className="inline-block mt-3 rounded bg-primary px-2 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                data-te-ripple-init
+                data-te-ripple-color="light"
+                onClick={() => navigate(-1)}
+              >
+                <FaArrowLeft className="h4 w-6" />
+              </button>
+              <button
+                type="button"
+                className="inline-block mt-3 rounded bg-primary px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                data-te-ripple-init
+                data-te-ripple-color="light"
+                onClick={() => navigate('/EditContact')}
+              >
+                <AiFillEdit />
+              </button>
+            </div>
             <div className="mb-3">
               {contact.name ? (
                 <h1 className="mt-6 font-bold text-xl">{contact.name} Info </h1>
@@ -74,7 +87,7 @@ const ContactDetails = () => {
                     type="file"
                     accept="image/* "
                     onChange={changeHandler}
-                    capture = 'user'
+                    capture="user"
                     className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                   />
                 </div>
@@ -100,15 +113,21 @@ const ContactDetails = () => {
                     <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50"></h5>
                     <div>
                       <h3 className="3xl mb-10">
-                        <span className="mr-7 py-2 px-4 rounded-full  border-0 font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100">Name:</span>{' '}
+                        <span className="mr-7 py-2 px-4 rounded-full  border-0 font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100">
+                          Name:
+                        </span>{' '}
                         {contact?.name}
                       </h3>
                       <h3 className="3xl mb-10">
-                        <span className="mr-8 py-2 px-4 rounded-full  border-0 font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100">Email:</span>{' '}
+                        <span className="mr-8 py-2 px-4 rounded-full  border-0 font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100">
+                          Email:
+                        </span>{' '}
                         {contact?.email}{' '}
                       </h3>
                       <h3 className="3xl">
-                        <span className="mr-1 py-2 px-4 rounded-full  border-0 font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100">Phone No: </span>
+                        <span className="mr-8 py-2 px-2 rounded-full  border-0 font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100">
+                          Number:{' '}
+                        </span>
                         {contact?.phone}{' '}
                       </h3>
                     </div>

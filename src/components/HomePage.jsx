@@ -16,7 +16,7 @@ const HomePage = () => {
             </div>
           </div>
           <div className="absolute bottom-0 w-full border-t border-gray-200 flex justify-center items-center bg-blue-700">
-            <Navbar />
+            <Navbar/>
           </div>
         </div>
       </div>

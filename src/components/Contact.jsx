@@ -1,4 +1,3 @@
-// mt-[5px]
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ContactContext } from '../App';
@@ -59,13 +58,12 @@ const Contact = () => {
                     className="mr-3 rounded-full p-2 "
                     style={{ backgroundColor: color }}
                   >
-                    <BsFillPersonFill className="" />
+                    <BsFillPersonFill></BsFillPersonFill>
                   </p>{' '}
                   {user.name}
                 </li>
               ))}
             </ol>
-
             <div className="absolute bottom-28 right-4 w-full flex justify-center">
               <div className="absolute  top-0">
                 <button
