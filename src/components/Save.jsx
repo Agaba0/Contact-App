@@ -1,12 +1,13 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ContactContext } from '../App';
-import Navbar from './nav';
+import Navbar from './Navbar';
 import SearchInput from './SearchInput';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const Save = () => {
   const [data, setData] = useState({});
+  // const { data, setData } = useContext(ContactContext);
   const { setContacts, contacts } = useContext(ContactContext);
 
   const navigate = useNavigate();
@@ -39,9 +40,9 @@ const Save = () => {
             <SearchInput />
             <button
               onClick={() => navigate(-1)}
-              className="text-blue-700 border mt-2 border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500" 
+              className="text-blue-700 border mt-2 border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
             >
-              <FaArrowLeft /> 
+              <FaArrowLeft />
             </button>
             <div className="mb-3">
               <h1 className="mt-6 font-bold">Add Contact</h1>
@@ -56,7 +57,7 @@ const Save = () => {
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required=""
-                    value={data?.firstName}
+                    // value={data?.firstName}
                     onChange={handleChange}
                   />
                   <label
@@ -74,7 +75,7 @@ const Save = () => {
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required=""
-                    value={data?.lastName}
+                    // value={data?.lastName}
                     onChange={handleChange}
                   />
                   <label
@@ -94,7 +95,7 @@ const Save = () => {
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required=""
-                    value={data?.phone}
+                    // value={data?.phone}
                     onChange={handleChange}
                   />
                   <label
@@ -112,7 +113,7 @@ const Save = () => {
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required=""
-                    value={data?.altPhoneNo}
+                    // value={data?.altPhoneNo}
                     onChange={handleChange}
                   />
                   <label
@@ -131,7 +132,7 @@ const Save = () => {
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   required=""
-                  value={data?.email}
+                  // value={data?.email}
                   onChange={handleChange}
                 />
                 <label
@@ -144,6 +145,7 @@ const Save = () => {
               <button
                 type="submit"
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                disabled = {data.email === ''}
               >
                 Submit
               </button>

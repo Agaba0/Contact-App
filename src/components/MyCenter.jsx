@@ -1,4 +1,4 @@
-import Navbar from './nav';
+import Navbar from './Navbar';
 import SearchInput from './SearchInput';
 
 const MyCenter = () => {

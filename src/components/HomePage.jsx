@@ -1,5 +1,5 @@
 import SearchInput from './SearchInput';
-import Navbar from './nav';
+import Navbar from './Navbar';
 
 const HomePage = () => {
   return (
@@ -10,13 +10,13 @@ const HomePage = () => {
           style={{ width: 414, height: 736 }}
         >
           <div className="bg-white h-full w-full px-5 pt-6 pb-20 overflow-y-auto">
-            <SearchInput/>
+            <SearchInput />
             <div className="mb-3">
               <h1 className="mt-6 font-bold">Today</h1>
             </div>
           </div>
           <div className="absolute bottom-0 w-full border-t border-gray-200 flex justify-center items-center bg-blue-700">
-            <Navbar/>
+            <Navbar />
           </div>
         </div>
       </div>

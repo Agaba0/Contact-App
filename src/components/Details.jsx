@@ -1,16 +1,24 @@
 import { useContext, useEffect, useState } from 'react';
 import { ContactContext } from '../App';
-import Navbar from './nav';
+import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
-import { AiFillEdit } from 'react-icons/ai';
+import { AiFillEdit, AiOutlineWhatsApp } from 'react-icons/ai';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 
 const ContactDetails = () => {
   const navigate = useNavigate();
   const { contact } = useContext(ContactContext);
 
-  const imageMimeType = /image\/(png|jpg|jpeg)/i;
+  const [isHidden, setIsHidden] = useState(false);
 
+  // const [editContact, setEditContact] = useState('');
+  // const handleEditContactClick = (event) => {
+  //   const { name, value } = event.target;
+  //   setEditContact({ ...editContact, [name]: value });
+  // };
+  //function to read and display the uploaded image
+  const imageMimeType = /image\/(png|jpg|jpeg)/i;
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
 
@@ -42,7 +50,20 @@ const ContactDetails = () => {
         fileReader.abort();
       }
     };
-  }, [file]);
+  }, [file]); //the function stops here
+
+  const handleThreeDot = () => {
+    setIsHidden(!isHidden);
+  };
+
+  const handleShareBtn = () => {
+    const text = 'share from whatsapp';
+    const url = 'https://wootlab.ng/';
+    const whatsappLink = `https://wa.me/?text=${encodeURIComponent(
+      text
+    )}%20${encodeURIComponent(url)}`;
+    window.open(whatsappLink);
+  };
 
   return (
     <>
@@ -52,15 +73,15 @@ const ContactDetails = () => {
           style={{ width: 414, height: 736 }}
         >
           <div className="bg-white h-full w-full px-5 pt-6 pb-20 overflow-y-auto">
-            <div className="flex justify-between">
+            <div className="flex justify-end space-x-1">
               <button
                 type="button"
-                className="inline-block mt-3 rounded bg-primary px-2 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                className="mt-3 rounded bg-primary px-2 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                 data-te-ripple-init
                 data-te-ripple-color="light"
                 onClick={() => navigate(-1)}
               >
-                <FaArrowLeft className="h4 w-6" />
+                <FaArrowLeft className="h-4 w-6" />
               </button>
               <button
                 type="button"
@@ -69,9 +90,38 @@ const ContactDetails = () => {
                 data-te-ripple-color="light"
                 onClick={() => navigate('/EditContact')}
               >
-                <AiFillEdit />
+                <AiFillEdit className="h-4 w-6" />
+              </button>
+              <button
+                type="button"
+                className="inline-block mt-3 rounded bg-primary px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                onClick={handleThreeDot}
+              >
+                <BsThreeDotsVertical className="h-4 w-6" />
               </button>
             </div>
+            {isHidden && (
+              <div className="w-full flex justify-end align-end">
+                <ul className="space-y-2 pt-3">
+                  <li
+                    onClick={() => {
+                      handleDelete;
+                    }}
+                    className="cursor-pointer  active:text-red-300 px-2 rounded-full hover:bg-blue-200 bg-blue-400"
+                  >
+                    Delete
+                  </li>
+                  <li
+                    className="flex cursor-pointer  active:text-red-300 px-2 rounded-full hover:bg-blue-200 bg-blue-400"
+                    onClick={handleShareBtn}
+                  >
+                    Share
+                    <AiOutlineWhatsApp className='ml-2 mt-1'/>
+                  </li>
+                </ul>
+              </div>
+            )}
+
             <div className="mb-3">
               {contact.name ? (
                 <h1 className="mt-6 font-bold text-xl">{contact.name} Info </h1>

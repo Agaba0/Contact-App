@@ -1,32 +1,33 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ContactContext } from '../App';
-import Navbar from './nav';
+import Navbar from './Navbar';
 import SearchInput from './SearchInput';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const EditContact = () => {
-  const [data, setData] = useState({});
-  //   const { setContacts, contacts } = useContext(ContactContext);
-  const { contact } = useContext(ContactContext);
+  const { data, setData } = useContext(ContactContext);
+  const { setContacts, contacts } = useContext(ContactContext);
+  const { contact, setContact } = useContext(ContactContext);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setData({ ...data, [name]: value });
+    setContact({ ...contact, [name]: value });
   };
 
-  //   const handleSubmit = (event) => {
-  //     event.preventDefault();
-  //     const { firstName, lastName, ...rest } = data;
-  //     setContacts([
-  //       ...contacts,
-  //       { id: contacts.length + 1, name: firstName + ' ' + lastName, ...rest },
-  //     ]);
-  //     firstName.length > 1 || lastName.length > 1
-  //       ? navigate('/')
-  //       : navigate('/save');
-  //   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const { firstName, lastName, ...rest } = data;
+    setContacts([
+      ...contacts,
+      { id: contacts.length + 1, name: firstName + ' ' + lastName, ...rest },
+    ]);
+    firstName.length > 1 || lastName.length > 1
+      ? navigate('/')
+      : navigate('/save');
+  };
 
   return (
     <>
@@ -48,17 +49,17 @@ const EditContact = () => {
             <div className="mb-3">
               <h1 className="mt-6 font-bold">Edit Contact</h1>
             </div>
-            <form id="form">
-              <div className="grid md:grid-cols-2 md:gap-6">
-                <div className="relative z-0 w-full mb-6 group">
+            <form id="form" onSubmit={handleSubmit}>
+              {/* <div className="grid md:grid-cols-2 md:gap-6"> */}
+                <div className="relative z-0 w-full mb-6">
                   <input
                     type="text"
                     name="firstName"
                     id="firstName"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder={contact.name}
+                    placeholder=" "
                     required=""
-                    value={data?.firstName}
+                    value={contact?.name}
                     onChange={handleChange}
                   />
                   <label
@@ -68,7 +69,8 @@ const EditContact = () => {
                     {/* First name */}
                   </label>
                 </div>
-                <div className="relative z-0 w-full mb-6 group">
+                
+                {/* <div className="relative z-0 w-full mb-6 group">
                   <input
                     type="text"
                     name="lastName"
@@ -76,31 +78,32 @@ const EditContact = () => {
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=""
                     required=""
-                    value={data?.lastName}
+                    value={contact?.name}
                     onChange={handleChange}
                   />
                   <label
                     htmlFor="lastName"
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
-                    {/* Last name */}
+                    Last name
                   </label>
-                </div>
-              </div>
+                </div> */}
+                
+              {/* </div> */}
               <div className="grid md:grid-cols-2 md:gap-6">
                 <div className="relative z-0 w-full mb-6 group">
                   <input
                     type="tel"
                     name="phone"
-                    id="phoneNo"
+                    id="phone"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder={contact.phone}
+                    placeholder=""
                     required=""
-                    value={data?.phone}
+                    value={contact?.phone}
                     onChange={handleChange}
                   />
                   <label
-                    htmlFor="phoneNo"
+                    htmlFor="phone"
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     {/* Phone number */}
@@ -112,9 +115,9 @@ const EditContact = () => {
                     name="altPhoneNo"
                     id="altPhoneNo"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder={contact.altPhoneNo}
+                    placeholder=""
                     required=""
-                    value={data?.altPhoneNo}
+                    value={contact?.altPhoneNo}
                     onChange={handleChange}
                   />
                   <label
@@ -131,9 +134,9 @@ const EditContact = () => {
                   name="email"
                   id="email"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder={contact.email}
+                  placeholder=""
                   required=""
-                  value={data?.email}
+                  value={contact?.email}
                   onChange={handleChange}
                 />
                 <label

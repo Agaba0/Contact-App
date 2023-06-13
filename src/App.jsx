@@ -12,6 +12,7 @@ export const ContactContext = createContext();
 const App = () => {
   const [contacts, setContacts] = useState([]);
   const [contact, setContact] = useState({});
+  const [data, setData] = useState({});
 
   let urlData = 'https://jsonplaceholder.typicode.com/users';
 
@@ -28,9 +29,10 @@ const App = () => {
   useEffect(() => {
     fetchUsers();
   }, []);
+
   return (
     <ContactContext.Provider
-      value={{ contact, setContact, contacts, setContacts }}
+      value={{ contact, setContact, contacts, setContacts, data, setData }}
     >
       <Routes>
         <Route path="/" element={<Contact />}></Route>

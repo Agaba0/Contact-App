@@ -3,14 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { ContactContext } from '../App';
 import { IoIosAddCircle } from 'react-icons/io';
 import { BsFillPersonFill } from 'react-icons/bs';
-import Navbar from './nav';
-import randomColor from 'randomcolor';
+import Navbar from './Navbar';
 
 const Contact = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const { contacts, setContact } = useContext(ContactContext);
-  const color = randomColor();
 
   const handleSearchChange = (e) => {
     const { value } = e.target;
@@ -27,6 +25,13 @@ const Contact = () => {
     setData(contacts);
   }, [contacts]);
 
+  const getRandomColor = () => {
+    const r = Math.random() * 256
+    const g = Math.random() * 256
+    const b = Math.random() * 256
+    return `rgb(${r}, ${g}, ${b})`
+  };
+
   return (
     <>
       <div className="min-w-screen min-h-screen bg-gray-200 flex items-center justify-center px-5 py-5">
@@ -36,7 +41,7 @@ const Contact = () => {
         >
           <div className="bg-white h-full w-full px-5 pt-6 pb-20 overflow-y-auto">
             <div className="p-5 w-full border-b-2 border-gray-200 flex justify-center">
-              <input
+              <input  
                 name="txt"
                 className="bg-gray-100 rounded-full px-24 py-2 outline-none flex justify-center"
                 type="text"
@@ -56,7 +61,7 @@ const Contact = () => {
                 >
                   <p
                     className="mr-3 rounded-full p-2 "
-                    style={{ backgroundColor: color }}
+                    style={{ backgroundColor: getRandomColor() }}
                   >
                     <BsFillPersonFill></BsFillPersonFill>
                   </p>{' '}
